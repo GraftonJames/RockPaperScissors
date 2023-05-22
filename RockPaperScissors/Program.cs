@@ -13,9 +13,9 @@
                     " 1) Human" +
                     " 2) Computer"
                     );
-
+                // gets keystroke input
                 char read = Console.ReadKey().KeyChar;
-
+                //Runs either human or computer game based on keystroke
                 if (read == '1')
                 {
                     HumanGame();
@@ -26,7 +26,9 @@
                     ComputerGame();
                     tryAgain = false;
                 }
+                //Catches invalid inputs
                 else {
+                    Console.Clear();
                     Console.WriteLine("Invalid Input");
                 }
             }
@@ -39,18 +41,23 @@
             int playerTwoThrow = 0;
             string result = "Draw";
             int rounds = 0;
+            //plays games until someone wins
             while (result == "Draw")
             {
+                //gets first player throw
                 Console.Clear();
                 Console.WriteLine("Player One Throw:");
                 playerOneThrow = GetThrow();
                 throwCount[playerOneThrow]++;
+                //gets second player throw
                 Console.Clear();
                 Console.WriteLine("Player Two Throw:");
                 playerTwoThrow = GetThrow();
                 throwCount[playerTwoThrow]++;
+                //gets the result from the result matrix based on throw input
                 Console.Clear();
                 result = ResultMatrix[playerOneThrow, playerTwoThrow];
+                //Prints out match results
                 Console.WriteLine($"Player One: {Throws[playerOneThrow]}, Player Two: {Throws[playerTwoThrow]}");
                 if (result == "Draw")
                 {
@@ -67,6 +74,7 @@
                 rounds++;
                 Console.ReadLine();
             }
+            //game summary
             Console.WriteLine($"Rounds: {rounds}");
             Console.WriteLine($"Throw Count: Rock {throwCount[0]}, Paper {throwCount[1]}, Scissors {throwCount[2]}");
             Console.ReadLine();
@@ -77,9 +85,12 @@
             Console.WriteLine("Rock (1), Paper (2), Scissors (3)");
             bool valid = false;
             int index = 0;
+            //repeats untill valid input
             while (!valid)
             {
+                //gets input
                 char read = Console.ReadKey().KeyChar;
+                //validate input
                 if (read == '1' || read == '2' || read == '3')
                 {
                     valid = true;
@@ -98,17 +109,22 @@
             int HumanThrow = 0;
             int ComputerThrow = 0;
             string result = "Draw";
+            //plays matches until someone wins
             while (result == "Draw")
             {
+                //gets Human input
                 Console.Clear();
                 Console.WriteLine("Throw:");
                 HumanThrow = GetThrow();
                 throwCount[HumanThrow]++;
+                //gets random computer input
                 Console.Clear();
                 ComputerThrow = rnd.Next(0, 2);
                 throwCount[ComputerThrow]++;
+                //gets the result from the result matrix based on throw input
                 result = ResultMatrix[HumanThrow, ComputerThrow];
                 Console.WriteLine($"Player: {Throws[HumanThrow]}, Computer: {Throws[ComputerThrow]}");
+                //Prints out match results
                 if (result == "Draw")
                 {
                     Console.WriteLine("Draw, play again!");
@@ -124,6 +140,7 @@
                 rounds++;
                 Console.ReadLine();
             }
+            //summary
             Console.WriteLine($"Rounds: {rounds}");
             Console.WriteLine($"Throw Count: Rock {throwCount[0]}, Paper {throwCount[1]}, Scissors {throwCount[2]}");
             Console.ReadLine();
